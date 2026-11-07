@@ -1,0 +1,18 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Environment variables
+.env
+
+# IntelliJ
+.idea/
+*.iml
+
+# Local data
+data/raw/
+downloads/
+
+# Local development scripts
+scripts/local/
