@@ -1,0 +1,24 @@
+{"text":"본인 또는 부·모 중 1명이 공고일 기준 1년 이상 화성시에 계속 거주","labels":["PERSONAL_ELIGIBILITY"],"group_id":"hwasung_dream_2026"}
+{"text":"한국장학재단 소득분위 5분위 이내의 대학생","labels":["FINANCIAL"],"group_id":"hwasung_dream_2026"}
+{"text":"보호연장 및 보호종료청년으로 관련 증빙서류를 제출할 수 있는 자","labels":["PERSONAL_ELIGIBILITY","ADMINISTRATIVE"],"group_id":"hwasung_dream_2026"}
+{"text":"직전 2개 학기 평점 평균 3.0 이상인 학생","labels":["ACADEMIC"],"group_id":"hwasung_dream_2026"}
+{"text":"신입생은 성적요건 없음","labels":["ACADEMIC"],"group_id":"hwasung_dream_2026"}
+{"text":"2026년 1학기 재학증명서를 제출하여야 한다","labels":["ACADEMIC","ADMINISTRATIVE"],"group_id":"hwasung_dream_2026"}
+{"text":"휴학생은 지원할 수 없다","labels":["ACADEMIC"],"group_id":"hwasung_dream_2026"}
+{"text":"2026년 1학기 기준 학자금 지원구간 통지서를 제출해야 한다","labels":["FINANCIAL","ADMINISTRATIVE"],"group_id":"hwasung_dream_2026"}
+{"text":"법정 저소득층 증빙서류를 제출할 수 있다","labels":["FINANCIAL","ADMINISTRATIVE"],"group_id":"hwasung_dream_2026"}
+{"text":"접수기간은 2026년 5월 6일 10시부터 5월 22일 17시까지이다","labels":["PERIOD"],"group_id":"hwasung_dream_2026"}
+{"text":"선발결과는 2026년 7월 24일 발표 예정이다","labels":["PERIOD"],"group_id":"hwasung_dream_2026"}
+{"text":"장학증서 수여식에 필수로 참석하여야 한다","labels":["ADMINISTRATIVE"],"group_id":"hwasung_dream_2026"}
+{"text":"재단 홈페이지에서 회원가입 후 장학금을 신청한다","labels":["ADMINISTRATIVE"],"group_id":"hwasung_dream_2026"}
+{"text":"신청자 또는 부모 중 1명의 주민등록초본을 제출한다","labels":["PERSONAL_ELIGIBILITY","ADMINISTRATIVE"],"group_id":"hwasung_dream_2026"}
+{"text":"지정된 대학교 및 각 지역 교육대학교 재학생이어야 한다","labels":["ACADEMIC"],"group_id":"hwasung_dream_2026"}
+{"text":"꿈드림 장학금은 생활비성 장학금이다","labels":["OTHER"],"group_id":"hwasung_dream_2026"}
+{"text":"일반전형 장학생 486명을 선발한다","labels":["OTHER"],"group_id":"hwasung_dream_2026"}
+{"text":"1인당 지급액은 100만원이다","labels":["OTHER"],"group_id":"hwasung_dream_2026"}
+{"text":"봉사활동 시간이 20시간 이상인 학생","labels":["ACTIVITY"],"group_id":"synthetic_activity_v0"}
+{"text":"최근 1년간 봉사활동 실적이 있는 재학생","labels":["ACADEMIC","ACTIVITY"],"group_id":"synthetic_activity_v0"}
+{"text":"교내외 봉사활동 증빙서류를 제출해야 한다","labels":["ACTIVITY","ADMINISTRATIVE"],"group_id":"synthetic_activity_v0"}
+{"text":"만 24세 이하의 대학생만 신청할 수 있다","labels":["PERSONAL_ELIGIBILITY"],"group_id":"synthetic_personal_v0"}
+{"text":"대한민국 국적을 가진 재학생을 대상으로 한다","labels":["ACADEMIC","PERSONAL_ELIGIBILITY"],"group_id":"synthetic_personal_v0"}
+{"text":"신청기간 이후 접수한 서류는 인정하지 않는다","labels":["PERIOD","ADMINISTRATIVE"],"group_id":"synthetic_period_v0"}

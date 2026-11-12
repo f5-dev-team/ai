@@ -16,3 +16,6 @@ downloads/
 
 # Local development scripts
 scripts/local/
+
+# Model artifacts
+artifacts/models/
