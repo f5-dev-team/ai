@@ -2,65 +2,95 @@ import re
 
 
 class DocumentPreprocessor:
+    SECTION_PATTERN = re.compile(
+        r"(?=^(?:[ⅠⅡⅢⅣⅤⅥⅦⅧⅨⅩ]+\.|제\s*\d+\s*[장절]))",
+        re.MULTILINE,
+    )
+
+    SENTENCE_PATTERN = re.compile(
+        r"(?<=[!?])\s+"
+        r"|(?<=[가-힣A-Za-z]\.)\s+"
+        r"|\n(?=[□■▪●•※①②③④⑤⑥⑦⑧⑨⑩])"
+    )
+
     @staticmethod
     def clean_text(text: str) -> str:
-        # 연속 공백 정리
-        text = re.sub(r"[ \t]+", " ", text)
+        text = text.replace("\r\n", "\n")
+        text = text.replace("\r", "\n")
 
-        # 불필요한 빈 줄 정리
+        text = re.sub(r"[ \t]+", " ", text)
         text = re.sub(r"\n{3,}", "\n\n", text)
 
-        # 각 줄 앞뒤 공백 제거
-        lines = [line.strip() for line in text.splitlines()]
-
-        return "\n".join(line for line in lines if line)
-
-    @staticmethod
-    def chunk_text(
-            text: str,
-            max_chars: int = 1000,
-            overlap_chars: int = 150,
-    ) -> list[str]:
-
-        paragraphs = [
-            paragraph.strip()
-            for paragraph in text.split("\n")
-            if paragraph.strip()
+        lines = [
+            line.strip()
+            for line in text.splitlines()
+            if line.strip()
         ]
 
-        chunks = []
-        current_chunk = ""
+        deduplicated_lines = []
 
-        for paragraph in paragraphs:
-            candidate = (
-                f"{current_chunk}\n{paragraph}"
-                if current_chunk
-                else paragraph
-            )
+        for line in lines:
+            if not deduplicated_lines or line != deduplicated_lines[-1]:
+                deduplicated_lines.append(line)
 
-            if len(candidate) <= max_chars:
-                current_chunk = candidate
-                continue
+        return "\n".join(deduplicated_lines)
 
-            if current_chunk:
-                chunks.append(current_chunk)
+    @classmethod
+    def split_sections(cls, text: str) -> list[str]:
+        sections = [
+            section.strip()
+            for section in cls.SECTION_PATTERN.split(text)
+            if section.strip()
+        ]
 
-                overlap = current_chunk[-overlap_chars:]
-                current_chunk = f"{overlap}\n{paragraph}"
-            else:
-                # 한 문단 자체가 너무 긴 경우
-                for start in range(
-                        0,
-                        len(paragraph),
-                        max_chars - overlap_chars,
+        return sections
+
+    @classmethod
+    def split_sentences(cls, text: str) -> list[str]:
+        sentences = [
+            sentence.strip()
+            for sentence in cls.SENTENCE_PATTERN.split(text)
+            if sentence.strip()
+        ]
+
+        return sentences
+
+    @classmethod
+    def chunk_text(
+            cls,
+            text: str,
+            max_chars: int = 1200,
+            overlap_sentences: int = 2,
+    ) -> list[str]:
+        sections = cls.split_sections(text)
+
+        chunks: list[str] = []
+
+        for section in sections:
+            sentences = cls.split_sentences(section)
+
+            current: list[str] = []
+            current_length = 0
+
+            for sentence in sentences:
+                sentence_length = len(sentence) + 1
+
+                if (
+                        current
+                        and current_length + sentence_length > max_chars
                 ):
-                    chunks.append(
-                        paragraph[start:start + max_chars]
+                    chunks.append("\n".join(current))
+
+                    current = current[-overlap_sentences:]
+                    current_length = sum(
+                        len(item) + 1
+                        for item in current
                     )
 
-                current_chunk = ""
+                current.append(sentence)
+                current_length += sentence_length
 
-        if current_chunk:
-            chunks.append(current_chunk)
+            if current:
+                chunks.append("\n".join(current))
 
         return chunks
